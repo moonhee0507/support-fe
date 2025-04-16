@@ -10,10 +10,10 @@ export async function POST(req: Request) {
         return new Response(JSON.stringify({ error: "Invalid request body" }), { status: 400 });
     }
 
-    // 서버리스 환경에서 쓰기 가능한 경로 설정
-    const tmpPath = "/tmp";
+    // Downloads 폴더 경로
+    const downloadsPath = path.join(process.env.HOME || "", "Downloads");
+    const levelTestPath = path.join(downloadsPath, "level-test");
 
-    const levelTestPath = path.join(tmpPath, "level-test");
     // level-test 폴더 생성
     if (!fs.existsSync(levelTestPath)) {
         fs.mkdirSync(levelTestPath);

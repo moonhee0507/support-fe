@@ -36,8 +36,7 @@ export default function Page() {
           <ul className="list-disc">
             <li>숨긴 행은 업로드되지 않습니다.</li>
             <li>지원자 번호는 0번째 열에 있어야 합니다.</li>
-            <li><span className="text-primary">Github 저장소 컬럼을 선택</span>하면 클론 작업이 시작됩니다.</li>
-            <li>클론 경로: <code>/Users/username/tmp/level-test</code></li>
+            <li><span className="text-primary">Github 저장소 컬럼을 선택</span>하면 명령어가 생성됩니다.</li>
           </ul>
         </section>
         <div className="w-full">
