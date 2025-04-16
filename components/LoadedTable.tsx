@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dialog"
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 interface ILoadedTableProps {
     dataset: RowData[];
@@ -30,7 +31,7 @@ const LoadedTable = ({ dataset }: ILoadedTableProps) => {
     const [command, setCommand] = useState<string | null>(null);
 
     const handleMouseEnter = (index: number) => {
-        console.log(index)
+        // console.log(index)
         setHoveredColumn(index); // 마우스가 올라간 열 인덱스 설정
     };
 
@@ -39,14 +40,10 @@ const LoadedTable = ({ dataset }: ILoadedTableProps) => {
     };
 
     const handleHeadClick = async (i: number) => {
-        const isConfirmed = window.confirm("Clone these repositories?");
-        if (!isConfirmed) return;
-        
-
         const applicantNumbers = rows.map((r) => r[0]);
         const cloneUrls = rows.map((r) => r[i]);
-        console.log(applicantNumbers);
-        console.log(cloneUrls);
+        // console.log(applicantNumbers);
+        // console.log(cloneUrls);
 
     //    try {
     //     const response = await fetch("/clone/api", {
@@ -86,7 +83,7 @@ const LoadedTable = ({ dataset }: ILoadedTableProps) => {
         const commands = applicantNumbers.map((number, index) => {
             return `git clone ${cloneUrls[index]} ${number}`;
         }).join("\n");
-        console.log(commands);
+        // console.log(commands);
         setCommand(commands);
     };
 
@@ -102,6 +99,7 @@ const LoadedTable = ({ dataset }: ILoadedTableProps) => {
                                     onClick={() => handleHeadClick(i)}
                                     onMouseEnter={() => handleMouseEnter(i)}
                                     onMouseLeave={handleMouseLeave}
+                                    className="cursor-pointer"
                                 >
                                     {h}
                                 </TableHead>
@@ -139,7 +137,7 @@ const LoadedTable = ({ dataset }: ILoadedTableProps) => {
                             <DialogFooter>
                                 <Button type="button" onClick={() => {
                                     navigator.clipboard.writeText(command || "");
-                                    alert("복사되었습니다.");
+                                    toast.success("명령어가 복사되었습니다.");
                                     setCommand(null);
                                 }}>복사</Button>
                             </DialogFooter>
