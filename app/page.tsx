@@ -8,7 +8,12 @@ export default function Home() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center h-screen">
-      <Button className="h-20 rounded-xs px-10 has-[>svg]:px-8 text-xl" onClick={() => router.push('/clone')}>지원자 코드 다운로드</Button>
+      <Button
+        className="h-20 rounded-xs px-10 has-[>svg]:px-8 text-xl font-(family-name:--font-dunggeunmo) cursor-pointer"
+        onClick={() => router.push('/clone')}
+      >
+        지원자 코드 다운로드
+      </Button>
     </div>
   );
 }

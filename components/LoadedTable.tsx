@@ -18,6 +18,7 @@ import {
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
+import { Copy } from "lucide-react";
 
 interface ILoadedTableProps {
     dataset: RowData[];
@@ -129,17 +130,23 @@ const LoadedTable = ({ dataset }: ILoadedTableProps) => {
                                     아래 명령어를 복사하여 터미널에 붙여넣기 하세요.
                                 </DialogDescription>
                             </DialogHeader>
-                            <div className="overflow-x-auto max-h-[300px] bg-secondary p-4">
-                                <pre className="text-xs font-mono text-secondary-foreground">
+                            <div className="overflow-x-auto max-h-[300px] bg-secondary p-4 rounded-md">
+                                <pre className="text-xs font-mono text-secondary-foreground leading-5">
                                     {command}
                                 </pre>
                             </div>
                             <DialogFooter>
-                                <Button type="button" onClick={() => {
-                                    navigator.clipboard.writeText(command || "");
-                                    toast.success("명령어가 복사되었습니다.");
-                                    setCommand(null);
-                                }}>복사</Button>
+                                <Button
+                                    type="button"
+                                    className="w-full font-(family-name:--font-dunggeunmo)"
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(command || "");
+                                        toast.success("명령어가 복사되었습니다.");
+                                        setCommand(null);
+                                    }}
+                                >
+                                    <Copy /> 복사하기
+                                </Button>
                             </DialogFooter>
                         </DialogContent>
                     </Dialog>
